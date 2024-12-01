@@ -1,17 +1,26 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState,useContext } from "react";
 import Header from "./Header";
-import netFlixLogo from "/assets/Netflix_Logo_PMS.png";
 import backGroundImg from "/assets/Login-Background.jpg";
 import { validate } from "../utils/validate";
+import {UserContext} from "../store/authStore";
+import { ToastContainer, toast ,Flip} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {useNavigate} from  'react-router-dom'
 import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+
 const Login = () => {
+
   const [isSignIn, setIssignIn] = useState(true);
   const [validateError, setError] = useState(null);
+  const {authUser,setAuthUser} = useContext(UserContext)
+  
+  const navigate=useNavigate()
+
   const email = useRef(null);
   const password = useRef(null);
   const userName = useRef(null);
@@ -35,12 +44,29 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+     
+          
+         
 
           updateProfile(user, {
             displayName: userName?.current?.value,
           })
             .then(() => {
-              console.log(user);
+                toast.success('sign up successfully!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: true,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "dark",
+                    transition: Flip,
+                    });
+          
+                    setAuthUser(user)
+                   
+                    navigate('/browse')
             })
             .catch((e) => setError(e.message));
         })
@@ -57,7 +83,10 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          setAuthUser(user)
+          navigate('/browse')
+
+          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -71,10 +100,10 @@ const Login = () => {
     <>
       {/* header */}
       <div className="">
-        <div className="absolute w-48 ml-44 mt-5  ">
-          <img src={netFlixLogo} alt="Logo" />
-        </div>
-
+       <Header/>
+        
+        {/* toast  */}
+        <ToastContainer />
         <img src={backGroundImg} alt="background" />
 
         <div className=" absolute top-32 left-0 right-0  w-[500px] bg-black  mx-auto py-10  px-16 bg-opacity-75 rounded-sm text-white h-[700px]">

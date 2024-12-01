@@ -1,4 +1,13 @@
-import Body from "./components/Body";
-const App = () => <Body/>;
+import Body from "./components/Body"
+import UserProvider from './store/authStore'
+function App() {
 
-export default App;
+
+  return (
+    <UserProvider> 
+    <Body/>
+    </UserProvider>
+  )
+}
+
+export default App

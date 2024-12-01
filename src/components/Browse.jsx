@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
+import Header from "./Header";
+import { UserContext } from "../store/authStore";
 
 const Browse = () => {
-  return <div><h1> iam browser</h1> </div>;
+  const { authUser } = useContext(UserContext);
+  return (
+    <div>
+      <Header/>
+    </div>
+  );
 };
 
 export default Browse;
