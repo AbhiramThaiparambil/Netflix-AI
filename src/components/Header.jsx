@@ -8,7 +8,6 @@ import netFlixLogo from "/assets/Netflix_Logo_PMS.png";
 const Header = () => {
   const navigate=useNavigate()  
  const {authUser,setAuthUser}=useContext(UserContext)
- console.log(authUser);
   
  const handleLogout=()=>{
     signOut(auth).then(() => {

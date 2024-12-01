@@ -1,11 +1,11 @@
-import React, { useRef, useState,useContext } from "react";
+import React, { useRef, useState, useContext } from "react";
 import Header from "./Header";
 import backGroundImg from "/assets/Login-Background.jpg";
 import { validate } from "../utils/validate";
-import {UserContext} from "../store/authStore";
-import { ToastContainer, toast ,Flip} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import {useNavigate} from  'react-router-dom'
+import { UserContext } from "../store/authStore";
+import { ToastContainer, toast, Flip } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import {
   createUserWithEmailAndPassword,
   updateProfile,
@@ -14,12 +14,11 @@ import {
 import { auth } from "../utils/firebase";
 
 const Login = () => {
-
   const [isSignIn, setIssignIn] = useState(true);
   const [validateError, setError] = useState(null);
-  const {authUser,setAuthUser} = useContext(UserContext)
-  
-  const navigate=useNavigate()
+  const { authUser, setAuthUser } = useContext(UserContext);
+
+  const navigate = useNavigate();
 
   const email = useRef(null);
   const password = useRef(null);
@@ -44,29 +43,30 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-     
-          
-         
 
           updateProfile(user, {
             displayName: userName?.current?.value,
           })
             .then(() => {
-                toast.success('sign up successfully!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: true,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "dark",
-                    transition: Flip,
-                    });
-          
-                    setAuthUser(user)
-                   
-                    navigate('/browse')
+              toast.success("sign up successfully!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Flip,
+              });
+
+              setAuthUser({
+                displayName: user.displayName,
+                email: user.email,
+                uid: user.uid,
+              });
+
+              navigate("/browse");
             })
             .catch((e) => setError(e.message));
         })
@@ -83,10 +83,12 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          setAuthUser(user)
-          navigate('/browse')
-
-          
+          setAuthUser({
+            displayName: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          });
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -100,8 +102,8 @@ const Login = () => {
     <>
       {/* header */}
       <div className="">
-       <Header/>
-        
+        <Header />
+
         {/* toast  */}
         <ToastContainer />
         <img src={backGroundImg} alt="background" />
