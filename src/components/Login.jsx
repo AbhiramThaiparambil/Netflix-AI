@@ -1,28 +1,72 @@
 import React, { useRef, useState } from "react";
 import Header from "./Header";
-import netFlixLogo from "../../public/assets/Netflix_Logo_PMS.png";
-import backGroundImg from "../../public/assets/Login-Background.jpg";
+import netFlixLogo from "/assets/Netflix_Logo_PMS.png";
+import backGroundImg from "/assets/Login-Background.jpg";
 import { validate } from "../utils/validate";
-
-
+import {
+  createUserWithEmailAndPassword,
+  updateProfile,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 const Login = () => {
   const [isSignIn, setIssignIn] = useState(true);
-  const [validateError,setError]=useState(null);
-  const email=useRef(null)
-  const password=useRef(null)
-  const userName=useRef(null)
+  const [validateError, setError] = useState(null);
+  const email = useRef(null);
+  const password = useRef(null);
+  const userName = useRef(null);
   const handileSignUp = () => {
     setIssignIn(!isSignIn);
   };
 
-  const handilSumbitBtnClik=()=>{
+  const handilSumbitBtnClik = () => {
+    const isValidate = validate(
+      email.current.value,
+      password.current.value,
+      userName?.current?.value
+    );
+    setError(isValidate);
 
-       const isValidate = validate(email.current.value,password.current.value,userName?.current?.value )
-       setError(isValidate)
-       
-       
-       
-  }
+    if (validateError === null && !isSignIn) {
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: userName?.current?.value,
+          })
+            .then(() => {
+              console.log(user);
+            })
+            .catch((e) => setError(e.message));
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setError(errorCode + "--" + errorMessage);
+        });
+    } else if (validateError === null && isSignIn) {
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+
+          setError(error.message);
+        });
+    }
+  };
   return (
     <>
       {/* header */}
@@ -37,7 +81,7 @@ const Login = () => {
           <h1 className="text-white font-bold mt-5 text-3xl mb-10 ">
             {isSignIn ? "Sign in" : "Sign UP"}
           </h1>
-          <form action="" onSubmit={(e)=>e.preventDefault()}>
+          <form action="" onSubmit={(e) => e.preventDefault()}>
             {!isSignIn && (
               <input
                 className="w-full p-3 mb-3 border border-gray-500 border-[0.5px] rounded-md"
@@ -61,8 +105,11 @@ const Login = () => {
               ref={password}
               placeholder="Password"
             />
-             <p className="text-red-400 font-bold">{ validateError }</p>
-            <button onClick={()=> handilSumbitBtnClik()} className="bg-red-700 p-3 mt-9 w-full rounded-md">
+            <p className="text-red-400 font-bold">{validateError}</p>
+            <button
+              onClick={() => handilSumbitBtnClik()}
+              className="bg-red-700 p-3 mt-9 w-full rounded-md"
+            >
               {isSignIn ? "Sign in" : "Sign UP"}
             </button>
             <p className="mt-5 cursor-pointer" onClick={() => handileSignUp()}>
