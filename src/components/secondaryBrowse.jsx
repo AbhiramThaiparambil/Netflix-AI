@@ -1,16 +1,27 @@
-import React from 'react'
-import MovieList from './movieList'
-import { useSelector } from 'react-redux'
+import React from "react";
+import MovieList from "./movieList";
+import { useSelector } from "react-redux";
 const SecondaryBrowse = () => {
-    const movies=useSelector((store)=>store.movies?.nowPlayingMovies)
-  return (
-    <div>
-       <MovieList title={"nowPlayingMovies"} movies={movies}/>
-       {/* <MovieList title={"nowPlayingMovies"} movies={movies}/>
-       <MovieList title={"nowPlayingMovies"} movies={movies}/>
-       <MovieList title={"nowPlayingMovies"} movies={movies}/> */}
-    </div>
-  )
-}
+  //     nowPlayingMovies: null,
+  //     movieTrailer: null,
+  //     popularMovies: null,
+  //     topRatedMovies: null,
+  // upcomingMovies: null
+  const nowPlaying = useSelector((store) => store.movies?.nowPlayingMovies);
+  const popularMovies = useSelector((store) => store.movies?.popularMovies);
 
-export default SecondaryBrowse
+  const topRatedMovies = useSelector((store) => store.movies?.topRatedMovies);
+
+  return (
+    <div className= "bg-black">
+          <div className="md:-mt-56 relative z-10 p-5 "> 
+      <MovieList title={"nowPlayingMovies"} movies={nowPlaying} />
+      <MovieList title={"popularMovies"} movies={popularMovies} />
+      <MovieList title={"topRatedMovies"} movies={topRatedMovies} />
+      {/* <MovieList title={"nowPlayingMovies"} movies={movies} /> */}
+      </div>
+    </div>
+  );
+};
+
+export default SecondaryBrowse;

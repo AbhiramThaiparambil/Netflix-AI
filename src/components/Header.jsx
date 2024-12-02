@@ -21,12 +21,12 @@ const Header = () => {
   };
   return (
     <div>
-      <div className="absolute w-screen  flex justify-between">
-        <img className="w-48 ml-44 mt-5" src={netFlixLogo} alt="Logo" />
+      <div className= " md:absolute w-screen  mb-5  z-20 bg-black flex  md:justify-between  md:bg-transparent  md:bg-gradient-to-b	  md:from-black">
+        <img className="w-48 mx-auto md:ml-32 md:mt-5 " src={netFlixLogo} alt="Logo" />
 
-        <div>
-          <MenuDefault userData={authUser} logoutAction={handleLogout} />
-        </div>
+    { authUser && <div >
+      <MenuDefault userData={authUser} logoutAction={handleLogout} />
+    </div>}
       </div>
     </div>
   );

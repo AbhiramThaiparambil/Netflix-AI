@@ -10,7 +10,7 @@ export function MenuDefault({ userData, logoutAction }) {
   return (
     <Menu>
       <MenuHandler>
-        <Button className="p-2  mt-14 mr-16 bg-red-500  rounded-md w-24 text-wrap text-white">
+        <Button className="p-2  md:mt-10 mt-16 md:mr-16 font-thin bg-red-400  rounded-md w-24 text-wrap text-white">
           {userData?.displayName || "User"}
         </Button>
       </MenuHandler>

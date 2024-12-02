@@ -101,21 +101,26 @@ const Login = () => {
   return (
     <>
       {/* header */}
-      <div className="">
+      <div className="bg-black">
         <Header />
 
         {/* toast  */}
         <ToastContainer />
-        <img src={backGroundImg} alt="background" />
+        <img
+          className="h-screen object-cover md:h-auto md:object-none"
+          src={backGroundImg}
+          alt="background"
+        />
 
-        <div className=" absolute top-32 left-0 right-0  w-[500px] bg-black  mx-auto py-10  px-16 bg-opacity-75 rounded-sm text-white h-[700px]">
+        {/* <div className="  md:absolute top-32 left-0 right-0  w-[500px] bg-black  mx-auto py-10  px-16 bg-opacity-75 rounded-sm text-white h-[700px]"> */}
+        <div className="  absolute top-32 left-0 right-0 h-[600px]  w-11/12  bg-black  mx-auto py-10  px-16 bg-opacity-75 rounded-sm text-white  md:w-[500px] md:h-[700px] md:-mt-10">
           <h1 className="text-white font-bold mt-5 text-3xl mb-10 ">
             {isSignIn ? "Sign in" : "Sign UP"}
           </h1>
           <form action="" onSubmit={(e) => e.preventDefault()}>
             {!isSignIn && (
               <input
-                className="w-full p-3 mb-3 border border-gray-500 border-[0.5px] rounded-md"
+                className="w-full p-3 mb-3  border-gray-500 border-[0.5px] rounded-md"
                 style={{ backgroundColor: "rgba(22, 22, 22, 0.7)" }}
                 type="text"
                 ref={userName}
@@ -123,14 +128,14 @@ const Login = () => {
               />
             )}
             <input
-              className="w-full  p-3 border border-gray-500 border-[0.5px] rounded-md"
+              className="w-full  p-3  border-gray-500 border-[0.5px] rounded-md"
               style={{ backgroundColor: "rgba(22, 22, 22, 0.7)" }}
               type="text"
               ref={email}
               placeholder="Email"
             />
             <input
-              className="w-full mt-3 p-3 border border-gray-500 border-[0.5px] rounded-md "
+              className="w-full mt-3 p-3  border-gray-500 border-[0.5px] rounded-md "
               style={{ backgroundColor: "rgba(22, 22, 22, 0.7)" }}
               type="password"
               ref={password}
