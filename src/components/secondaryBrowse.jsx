@@ -16,8 +16,10 @@ const SecondaryBrowse = () => {
     <div className= "bg-black">
           <div className="md:-mt-56 relative z-10 p-5 "> 
       <MovieList title={"nowPlayingMovies"} movies={nowPlaying} />
-      <MovieList title={"popularMovies"} movies={popularMovies} />
+      
       <MovieList title={"topRatedMovies"} movies={topRatedMovies} />
+      <MovieList title={"popularMovies"} movies={popularMovies} />
+      <MovieList title={"nowPlayingMovies"} movies={nowPlaying} />
       {/* <MovieList title={"nowPlayingMovies"} movies={movies} /> */}
       </div>
     </div>

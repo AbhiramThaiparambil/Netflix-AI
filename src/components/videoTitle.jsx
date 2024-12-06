@@ -1,7 +1,7 @@
 import React from "react";
 
 function videoTitle({title,overview}) {
-    console.log(title);
+ 
     
   return(
      <div className="pt-72 pl-20 aspect-video absolute text-white w-screen bg-gradient-to-r from-black/65 to-transparent  "  >

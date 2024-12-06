@@ -7,3 +7,16 @@ export const Movie_API_options = {
 };
 
 export const TMDB_IMG_URL = "https://image.tmdb.org/t/p/w500"
+
+
+export const language={
+  search:{
+  "en-us":"search",
+  "mal-in":"തിരയുക",
+  },
+  "searchPlaceHolder":{
+    'en-us':"what is your mood today?",
+    "mal-in":"ഇന്നത്തെ നിങ്ങളുടെ മാനസികാവസ്ഥ എന്താണ്?"
+
+  }
+}

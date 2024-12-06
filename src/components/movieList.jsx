@@ -1,7 +1,6 @@
 import React from "react";
 import MovieCards from "./movieCards";
 const MovieList = ({ title, movies }) => {
-  console.log(movies?.results);
 
   return (
     <div>
