@@ -1,20 +1,49 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { MenuDefault } from "./tools/dropDown";
 import { UserContext } from "../store/authStore";
 import netFlixLogo from "/assets/Netflix_Logo_PMS.png";
 import { auth } from "../utils/firebase";
-import { signOut } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { enableAiSearch } from "../store/ConfigSlice";
 import { useSelector } from "react-redux";
 const Header = () => {
+
+  const navigate = useNavigate();
+
+  const { authUser, setAuthUser } = useContext(UserContext);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthUser({
+          displayName: user.displayName,
+          email: user.email,
+          uid: user.uid,
+        });
+        navigate('/browse')
+      } else {
+        setAuthUser(null);
+      }
+    });
+    return () => unsubscribe();
+  }, [setAuthUser]);
+
+
+
+
+
+
+
+
+
   const dispatch = useDispatch();
 
   const aiSearch = useSelector((store) => store.Config?.aiSearch);
 
-  const navigate = useNavigate();
-  const { authUser, setAuthUser } = useContext(UserContext);
+ 
+ 
 
   const handleLogout = () => {
     signOut(auth)

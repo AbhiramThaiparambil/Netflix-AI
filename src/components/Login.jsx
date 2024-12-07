@@ -48,8 +48,8 @@ const Login = () => {
             displayName: userName?.current?.value,
           })
             .then(() => {
-              navigate("/browse");
-              
+           
+
               toast.success("sign up successfully!", {
                 position: "top-right",
                 autoClose: 5000,
@@ -70,7 +70,7 @@ const Login = () => {
                 uid: user.uid,
               });
 
-              navigate("/browse");
+       
             })
             .catch((e) => setError(e.message));
         })
@@ -92,7 +92,6 @@ const Login = () => {
             email: user.email,
             uid: user.uid,
           });
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
