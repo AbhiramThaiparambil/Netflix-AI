@@ -7,9 +7,11 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { enableAiSearch } from "../store/ConfigSlice";
-
+import { useSelector } from "react-redux";
 const Header = () => {
   const dispatch = useDispatch();
+
+  const aiSearch = useSelector((store) => store.Config?.aiSearch);
 
   const navigate = useNavigate();
   const { authUser, setAuthUser } = useContext(UserContext);
@@ -33,13 +35,22 @@ const Header = () => {
           alt="Logo"
         />
 
-       
-        <button
-          className="  h-10 rounded-lg px-4 mt-[2.5rem] mr-10  text-white  font-bold bg-purple-400   "
-          onClick={() => dispatch(enableAiSearch())}
-        >
-          AI search
-        </button>
+        {authUser &&(  aiSearch ? (
+          <button
+            className="  h-10 rounded-lg px-4 mt-[2.5rem] mr-10  text-white  font-bold bg-blue-600    "
+            onClick={() => dispatch(enableAiSearch())}
+          >
+            Home
+          </button>
+        ) : (
+          <button
+            className="  h-10 rounded-lg px-4 mt-[2.5rem] mr-10  text-white  font-bold bg-purple-400   "
+            onClick={() => dispatch(enableAiSearch())}
+          >
+            AI search
+          </button>
+        ))}
+
         {authUser && (
           <div>
             <MenuDefault userData={authUser} logoutAction={handleLogout} />

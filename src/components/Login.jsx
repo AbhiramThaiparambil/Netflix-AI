@@ -15,7 +15,7 @@ import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignIn, setIssignIn] = useState(true);
-  const [validateError, setError] = useState(null);
+  const [validateError, setError] = useState(' ');
   const { authUser, setAuthUser } = useContext(UserContext);
 
   const navigate = useNavigate();
@@ -48,6 +48,8 @@ const Login = () => {
             displayName: userName?.current?.value,
           })
             .then(() => {
+              navigate("/browse");
+              
               toast.success("sign up successfully!", {
                 position: "top-right",
                 autoClose: 5000,
@@ -58,7 +60,9 @@ const Login = () => {
                 progress: undefined,
                 theme: "dark",
                 transition: Flip,
+
               });
+              
 
               setAuthUser({
                 displayName: user.displayName,

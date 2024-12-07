@@ -1,11 +1,15 @@
-import React from 'react'
-
-const moviesSuggestion = ({movieNames,aiMovies}) => {
+import React from "react";
+import MovieList from "./movieList";
+import MovieSuggestionList from "./MovieSuggestionList";
+const moviesSuggestion = ({ movieNames, aiMovies }) => {
+  if (!movieNames) return null;
   return (
-    <div className='w-1/2 mx-auto bg-black text-white'>
-         <h1>{movieNames}</h1>
+    <div className="w-[900px] mx-auto flex flex-wrap  backdrop-blur-2xl  	 text-white">
+      {movieNames.map((movie, i) => {
+        return <MovieSuggestionList key={movie} movies={aiMovies[i]} />;
+      })}
     </div>
-  )
-}
+  );
+};
 
-export default moviesSuggestion
+export default moviesSuggestion;

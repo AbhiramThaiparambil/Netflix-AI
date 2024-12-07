@@ -35,8 +35,11 @@ const AiSearch = ({ lang }) => {
     console.log(aiMovies); // This will log whenever `aiMovies` updates
   }, [aiMovies]);
   return (
-    <div>
-    <div className=" w-1/2  p-5 mx-auto bg-black bg-opacity-60 rounded-sm flex">
+    <div className="w-2/3 mx-auto  backdrop-blur-2xl  rounded-3xl	pt-4">
+
+    <div className=" w-[900px]  p-5   mx-auto  bg-white bg-opacity-30 rounded-md flex mb-5 ">
+    {/* <div className=" w-[900px]  p-5   mx-auto  bg-black bg-opacity-60 rounded-md flex mb-5 "> */}
+
       <form onSubmit={(e) => handileSumbit(e)}>
         <input
           className="border pl-3 border-black h-10  py-3 w-[580px]  rounded-lg"
@@ -44,7 +47,7 @@ const AiSearch = ({ lang }) => {
           placeholder={searchPlaceHolder[lang]}
           type="text"
         />
-        <button className="px-3  py-2 ml-5 rounded-lg text-white font-bold bg-red-700">
+        <button className="px-20  py-2 ml-5 rounded-lg text-white font-bold bg-red-700">
           {search[lang]}
         </button>
       </form>

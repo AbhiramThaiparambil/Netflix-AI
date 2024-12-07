@@ -11,6 +11,7 @@ const searchMovie = (movies) => {
 
         return moviesResults
         
+        
 }
     } catch (error) {
 
