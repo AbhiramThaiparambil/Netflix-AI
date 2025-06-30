@@ -1,7 +1,6 @@
-import React,{useState} from 'react'
-import AiSearch from './Aisearch'
+import {useState} from 'react'
 import backGroundImg from "/assets/Login-Background.jpg";
-
+import AiSearch from './AiSearch';
 const AiSearchPage = () => {
     const [lang,setLang]=useState('en-us')
    
