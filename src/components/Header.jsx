@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { MenuDefault } from "./tools/dropDown";
 import { UserContext } from "../store/authStore";
 import netFlixLogo from "/assets/Netflix_Logo_PMS.png";
@@ -45,7 +45,7 @@ const Header = () => {
   };
   return (
     <div>
-      <div className=" md:absolute w-screen  mb-5  z-20 bg-black flex  md:justify-between  md:bg-transparent  md:bg-gradient-to-b	  md:from-black">
+      <div className="z-20 flex w-screen mb-5 bg-black  md:absolute md:justify-between md:bg-transparent md:bg-gradient-to-b md:from-black">
         <img
           className="w-48 mx-auto md:ml-32 md:mt-5 "
           src={netFlixLogo}

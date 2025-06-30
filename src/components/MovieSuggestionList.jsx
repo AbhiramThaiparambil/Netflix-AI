@@ -1,5 +1,4 @@
-import React from "react";
-import MovieCards from "./movieCards";
+
 import { TMDB_IMG_URL } from "../utils/constant";
 const MovieSuggestionList = ({ movies }) => {
     console.log( movies);
@@ -14,14 +13,14 @@ const MovieSuggestionList = ({ movies }) => {
 
              (
              
-                <div className=" bg-white bg-opacity-30   p-5 rounded-lg shadow-lg">
+                <div className="p-5 bg-white rounded-lg shadow-lg  bg-opacity-30">
                 <div className="w-[220px] ml-4 mt-5 text-center">
                   <img
                     src={TMDB_IMG_URL + movie.poster_path}
                     alt={movie.title}
-                    className="rounded-lg shadow-md hover:scale-105 transition-transform duration-300"
+                    className="transition-transform duration-300 rounded-lg shadow-md hover:scale-105"
                   />
-                  <h1 className="text-red  mt-3 text-lg font-semibold">
+                  <h1 className="mt-3 text-lg font-semibold text-red">
                     {movie.title}
                   </h1>
                 </div>

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext } from "react";
 import Header from "./Header";
 import backGroundImg from "/assets/Login-Background.jpg";
 import { validate } from "../utils/validate";
@@ -110,13 +110,13 @@ const Login = () => {
         {/* toast  */}
         <ToastContainer />
         <img
-          className="h-screen object-cover md:h-auto md:object-none"
+          className="object-cover h-screen md:h-auto md:object-none"
           src={backGroundImg}
           alt="background"
         />
 
         <div className="  absolute top-32 left-0 right-0 h-[600px]  w-11/12  bg-black  mx-auto py-10  px-16 bg-opacity-75 rounded-sm text-white  md:w-[500px] md:h-[700px] md:-mt-10">
-          <h1 className="text-white font-bold mt-5 text-3xl mb-10 ">
+          <h1 className="mt-5 mb-10 text-3xl font-bold text-white ">
             {isSignIn ? "Sign in" : "Sign UP"}
           </h1>
           <form action="" onSubmit={(e) => e.preventDefault()}>
@@ -143,10 +143,10 @@ const Login = () => {
               ref={password}
               placeholder="Password"
             />
-            <p className="text-red-400 font-bold">{validateError}</p>
+            <p className="font-bold text-red-400">{validateError}</p>
             <button
               onClick={() => handilSumbitBtnClik()}
-              className="bg-red-700 p-3 mt-9 w-full rounded-md"
+              className="w-full p-3 bg-red-700 rounded-md mt-9"
             >
               {isSignIn ? "Sign in" : "Sign UP"}
             </button>
@@ -157,7 +157,7 @@ const Login = () => {
               </span>
               .
             </p>
-            <p className="mt-5 font-sans text-gray-500 text-sm">
+            <p className="mt-5 font-sans text-sm text-gray-500">
               This page is protected by Google reCAPTCHA to ensure you're not a
               bot.{" "}
               <span className="text-sm text-blue-700 underline">

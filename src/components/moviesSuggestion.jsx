@@ -1,5 +1,4 @@
-import React from "react";
-import MovieList from "./movieList";
+
 import MovieSuggestionList from "./MovieSuggestionList";
 const moviesSuggestion = ({ movieNames, aiMovies }) => {
   if (!movieNames) return null;

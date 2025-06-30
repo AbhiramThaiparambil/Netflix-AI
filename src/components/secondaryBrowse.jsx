@@ -1,4 +1,4 @@
-import React from "react";
+
 import MovieList from "./movieList";
 import { useSelector } from "react-redux";
 const SecondaryBrowse = () => {
@@ -14,7 +14,7 @@ const SecondaryBrowse = () => {
 
   return (
     <div className= "bg-black">
-          <div className="md:-mt-56 relative z-10 p-5 "> 
+          <div className="relative z-10 p-5 md:-mt-56 "> 
       <MovieList title={"nowPlayingMovies"} movies={nowPlaying} />
       
       <MovieList title={"topRatedMovies"} movies={topRatedMovies} />

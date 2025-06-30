@@ -1,4 +1,3 @@
-import React from 'react'
 import { TMDB_IMG_URL } from '../utils/constant'
 
 const MovieCards = ({movie}) => {
